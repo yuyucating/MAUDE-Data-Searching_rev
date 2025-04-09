@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from tkcalendar import Calendar
 from tkinter import messagebox
 from pathlib import Path
@@ -95,7 +96,7 @@ def dateFrom():
     window_cal_from.title("選擇起始日期")
     calendar_from = Calendar(window_cal_from, selectmode="day")
     calendar_from.pack()
-    button_cal_from = tk.Button(window_cal_from, text="確認", command=dateFromGet)
+    button_cal_from = ttk.Button(window_cal_from, text="確認", command=dateFromGet)
     button_cal_from.pack()
 
 def dateTo():
@@ -114,7 +115,7 @@ def dateTo():
     window_cal_to.title("選擇結束日期")
     calendar_to = Calendar(window_cal_to, selectmode="day")
     calendar_to.pack()
-    button_cal_to = tk.Button(window_cal_to, text="確認", command=dateToGet)
+    button_cal_to = ttk.Button(window_cal_to, text="確認", command=dateToGet)
     button_cal_to.pack()
 
 def clean_dateFrom():
@@ -122,40 +123,40 @@ def clean_dateFrom():
 def clean_dateTo():
     datechoosen_to.set("尚未選擇結束日期")
 
-textbox = tk.Label(window, text='請選擇輸入資料讀取(excel)路徑')
+textbox = ttk.Label(window, text='請選擇輸入資料讀取(excel)路徑')
 textbox.pack(pady=5)
 
-dataLink = tk.Entry(window)
+dataLink = ttk.Entry(window)
 dataLink.pack(fill="x", pady=5)
 
-textbox = tk.Label(window, text='請選擇執行項目')
+textbox = ttk.Label(window, text='請選擇執行項目')
 textbox.pack()
 
-checkbutton_510 = tk.Checkbutton(window, text='搜尋 510(k) 資料', variable=checkbutton_510_var) # 觸發 checkbutton_510_var 可使用
+checkbutton_510 = ttk.Checkbutton(window, text='搜尋 510(k) 資料', variable=checkbutton_510_var) # 觸發 checkbutton_510_var 可使用
 checkbutton_510.pack() # 布局加入!
 # checkbutton_510.deselect()
-checkbutton_recall = tk.Checkbutton(window, text='搜尋 Recall', variable=checkbutton_recall_var)
+checkbutton_recall = ttk.Checkbutton(window, text='搜尋 Recall', variable=checkbutton_recall_var)
 checkbutton_recall.pack() # 布局加入!
-checkbutton_incident = tk.Checkbutton(window, text='搜尋 Incident', variable=checkbutton_incident_var)
+checkbutton_incident = ttk.Checkbutton(window, text='搜尋 Incident', variable=checkbutton_incident_var)
 checkbutton_incident.pack() # 布局加入
 
 frame_datechoosen = tk.Frame(window)
 frame_datechoosen.pack(pady=5)
 datechoosen_from = tk.StringVar()
 datechoosen_from.set("尚未選擇起始日期")
-label_datechoosen_from = tk.Label(frame_datechoosen, textvariable=datechoosen_from).grid(row=0, column=0)
-button_date_from = tk.Button(frame_datechoosen, text="選擇起始日期", command=dateFrom).grid(row=0, column=1)
-button_dateFrom_clean = tk.Button(frame_datechoosen, text="清除", command=clean_dateFrom).grid(row=0, column=2)
+label_datechoosen_from = ttk.Label(frame_datechoosen, textvariable=datechoosen_from).grid(row=0, column=0)
+button_date_from = ttk.Button(frame_datechoosen, text="選擇起始日期", command=dateFrom).grid(row=0, column=1)
+button_dateFrom_clean = ttk.Button(frame_datechoosen, text="清除", command=clean_dateFrom).grid(row=0, column=2)
 datechoosen_to = tk.StringVar()
 datechoosen_to.set("尚未選擇結束日期")
-label_datechoosen_to = tk.Label(frame_datechoosen, textvariable=datechoosen_to).grid(row=1, column=0)
-button_date_to = tk.Button(frame_datechoosen, text="選擇結束日期", command=dateTo).grid(row=1, column=1, padx=5)
-button_dateTo_clean = tk.Button(frame_datechoosen, text="清除", command=clean_dateTo).grid(row=1, column=2, padx=5)
+label_datechoosen_to = ttk.Label(frame_datechoosen, textvariable=datechoosen_to).grid(row=1, column=0)
+button_date_to = ttk.Button(frame_datechoosen, text="選擇結束日期", command=dateTo).grid(row=1, column=1, padx=5)
+button_dateTo_clean = ttk.Button(frame_datechoosen, text="清除", command=clean_dateTo).grid(row=1, column=2, padx=5)
 
-button_run = tk.Button(window, text='執行', command=run)
+button_run = ttk.Button(window, text='執行', command=run)
 button_run.pack(side="bottom", pady=5)
 
-button_test = tk.Button(window, text='以預設檔案進行測試', command=runtest)
+button_test = ttk.Button(window, text='以預設檔案進行測試', command=runtest)
 button_test.pack(side="bottom", pady=5)
 
 
