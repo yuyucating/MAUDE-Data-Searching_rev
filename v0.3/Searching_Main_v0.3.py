@@ -14,7 +14,7 @@ choose_case = 0
 
 window = tk.Tk()
 window.title('FDA 資料搜尋')
-# window.geometry('300x400')
+window.geometry('250x280')
 
 checkbutton_510_var = tk.BooleanVar()
 checkbutton_recall_var = tk.BooleanVar()
@@ -135,12 +135,12 @@ textbox = ttk.Label(window, text='請選擇執行項目')
 textbox.pack()
 
 checkbutton_510 = ttk.Checkbutton(window, text='搜尋 510(k) 資料', variable=checkbutton_510_var) # 觸發 checkbutton_510_var 可使用
-checkbutton_510.pack() # 布局加入!
+checkbutton_510.pack(anchor="w", padx=65) # 布局加入!
 # checkbutton_510.deselect()
 checkbutton_recall = ttk.Checkbutton(window, text='搜尋 Recall', variable=checkbutton_recall_var)
-checkbutton_recall.pack() # 布局加入!
+checkbutton_recall.pack(anchor="w", padx=65) # 布局加入!
 checkbutton_incident = ttk.Checkbutton(window, text='搜尋 Incident', variable=checkbutton_incident_var)
-checkbutton_incident.pack() # 布局加入
+checkbutton_incident.pack(anchor="w", padx=65) # 布局加入
 
 frame_datechoosen = tk.Frame(window)
 frame_datechoosen.pack(pady=5)
