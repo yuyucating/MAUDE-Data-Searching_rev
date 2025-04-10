@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 from tkcalendar import Calendar
+from tkinter import PhotoImage
+from PIL import Image, ImageTk
 from tkinter import messagebox
 from pathlib import Path
 import my510k_Searching
@@ -12,7 +14,7 @@ choose_case = 0
 
 window = tk.Tk()
 window.title('FDA 資料搜尋')
-window.geometry('300x400')
+# window.geometry('300x400')
 
 checkbutton_510_var = tk.BooleanVar()
 checkbutton_recall_var = tk.BooleanVar()
@@ -89,7 +91,7 @@ def dateFrom():
         month_From.set(str(dateFrom.month))
         day_From = tk.StringVar()
         day_From.set(str(dateFrom.day))
-        datechoosen_from.set(day_From.get()+"/"+month_From.get()+"/"+year_From.get())
+        datechoosen_from.set(month_From.get()+"/"+day_From.get()+"/"+year_From.get())
         window_cal_from.destroy()
         
     window_cal_from = tk.Toplevel(window)
@@ -108,7 +110,7 @@ def dateTo():
         month_To.set(str(dateTo.month))
         day_To = tk.StringVar()
         day_To.set(str(dateTo.day))
-        datechoosen_to.set(day_To.get()+"/"+month_To.get()+"/"+year_To.get())
+        datechoosen_to.set(month_To.get()+"/"+day_To.get()+"/"+year_To.get())
         window_cal_to.destroy()
         
     window_cal_to = tk.Toplevel(window)
@@ -142,16 +144,21 @@ checkbutton_incident.pack() # 布局加入
 
 frame_datechoosen = tk.Frame(window)
 frame_datechoosen.pack(pady=5)
+label_dateFrom = ttk.Label(frame_datechoosen, text="起始日期").grid(row=0, column=0, padx=5)
 datechoosen_from = tk.StringVar()
 datechoosen_from.set("尚未選擇起始日期")
-label_datechoosen_from = ttk.Label(frame_datechoosen, textvariable=datechoosen_from).grid(row=0, column=0)
-button_date_from = ttk.Button(frame_datechoosen, text="選擇起始日期", command=dateFrom).grid(row=0, column=1)
-button_dateFrom_clean = ttk.Button(frame_datechoosen, text="清除", command=clean_dateFrom).grid(row=0, column=2)
+label_datechoosen_from = ttk.Label(frame_datechoosen, textvariable=datechoosen_from).grid(row=0, column=1, padx=2)
+img_cal = Image.open(r"Img\calendar.png")
+resized_img_cal = img_cal.resize((16,16), Image.LANCZOS)
+btn_img_cal = ImageTk.PhotoImage(resized_img_cal) #轉成 tkinter 可以用的 image
+button_date_from = ttk.Button(frame_datechoosen, text="選擇起始日期", image=btn_img_cal, command=dateFrom).grid(row=0, column=2)
+button_dateFrom_clean = ttk.Button(frame_datechoosen, text="清除", width=5, command=clean_dateFrom).grid(row=0, column=3, padx=5)
+label_dateFrom = ttk.Label(frame_datechoosen, text="結束日期").grid(row=1, column=0, padx=5)
 datechoosen_to = tk.StringVar()
 datechoosen_to.set("尚未選擇結束日期")
-label_datechoosen_to = ttk.Label(frame_datechoosen, textvariable=datechoosen_to).grid(row=1, column=0)
-button_date_to = ttk.Button(frame_datechoosen, text="選擇結束日期", command=dateTo).grid(row=1, column=1, padx=5)
-button_dateTo_clean = ttk.Button(frame_datechoosen, text="清除", command=clean_dateTo).grid(row=1, column=2, padx=5)
+label_datechoosen_to = ttk.Label(frame_datechoosen, textvariable=datechoosen_to).grid(row=1, column=1, padx=2)
+button_date_to = ttk.Button(frame_datechoosen, text="選擇結束日期", image=btn_img_cal, command=dateTo).grid(row=1, column=2)
+button_dateTo_clean = ttk.Button(frame_datechoosen, text="清除", width=5, command=clean_dateTo).grid(row=1, column=3, padx=5)
 
 button_run = ttk.Button(window, text='執行', command=run)
 button_run.pack(side="bottom", pady=5)
