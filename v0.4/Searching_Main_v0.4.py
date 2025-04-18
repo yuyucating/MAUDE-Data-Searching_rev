@@ -22,7 +22,7 @@ checkbutton_recall_var = tk.BooleanVar()
 checkbutton_incident_var = tk.BooleanVar()
 
 def SearchingKeyFile():
-    file_path = filedialog.askopenfilename()
+    file_path = filedialog.askopenfilename(filetypes=[("Excel 檔案", "*.xlsx *.xls")])
     dL.set(file_path)
 
 def runtest(): 
